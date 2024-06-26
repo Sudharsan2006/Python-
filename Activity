@@ -1,0 +1,58 @@
+# Initial product prices
+prices = {
+    "biryani": 10,
+    "cola": 24,
+    "chips": 3000
+}
+
+user_dict = {}
+
+while True:
+    # Display menu
+    print("1. Biryani for 10")
+    print("2. Cola for 24")
+    print("3. Chips for 3000")
+    print("4. To exit menu")
+    
+    # Get user option
+    option = int(input("Enter option: "))
+    
+    if option == 4:
+        break
+
+    qty = int(input("Enter the quantity: "))
+    
+    if option == 1:
+        user_dict["biryani"] = [qty, prices["biryani"]]
+    elif option == 2:
+        user_dict["cola"] = [qty, prices["cola"]]
+    elif option == 3:
+        user_dict["chips"] = [qty, prices["chips"]]
+
+print("The cart is ready!!!")
+
+def adr_check():
+    address = input("Enter your address: ")
+    for word in address.split():
+        if word.lower() == "ks":
+            return False
+    return True
+
+while True:
+    if adr_check():
+        print("Deliver OK")
+        break
+    else:
+        print("Try other address")
+
+total_amount = 0
+
+for item in user_dict:
+    total_amount += user_dict[item][0] * user_dict[item][1]
+
+if total_amount > 100:
+    total_amount *= 0.9
+elif total_amount > 50:
+    total_amount *= 0.95
+
+print(f"After deducting the discount, the total amount is {total_amount:.2f}.")
